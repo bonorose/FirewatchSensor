@@ -107,7 +107,7 @@ void loop() {
           client.println("Content-Type: text/json");
           client.println("Connection: close");
           client.println();
-          // your actual web page that displays temperature
+
           client.println("{");
           client.println("\"temperature\":");
           client.printf("\"%s\",", temperatureFString);
