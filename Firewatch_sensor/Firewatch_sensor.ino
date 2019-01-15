@@ -1,9 +1,10 @@
 /*********
-  Project: BME Weather Web server using NodeMCU
-  Implements Adafruit's sensor libraries.
-  Complete project is at: http://embedded-lab.com/blog/making-a-simple-weather-web-server-using-esp8266-and-bme280/
+  Hardware Source
+  Ver. 0.2a
+  
+  The following code is used for operating the sensor hardware.
 
-  Modified code from Rui Santos' Temperature Weather Server posted on http://randomnerdtutorials.com
+  Team Firewatch, 2018-2019
 *********/
 
 #include <Wire.h>
@@ -15,9 +16,10 @@ Adafruit_BME280 bme; // I2C
 
 #define Gas_AOUT  A0
 
-// Replace with your network details
+// Network Credentials
 const char* ssid = "*******";
 const char* password = "*******";
+
 float h, t, p, pin, dp, ppt;
 char temperatureFString[6];
 char dpString[6];
@@ -28,14 +30,16 @@ char pressureInchString[6];
 // Web Server on port 80
 WiFiServer server(80);
 
-// only runs once on boot
+//BOOT
 void setup() {
-  // Initializing serial port for debugging purposes
+  
+  // Serial Comm
   Serial.begin(115200);
   delay(10);
   Wire.begin(D3, D4);
   Wire.setClock(100000);
-  // Connecting to WiFi network
+  
+  //WiFi network
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -52,11 +56,11 @@ void setup() {
   // Starting the web server
   server.begin();
   Serial.println("Web server running. Waiting for the ESP IP...");
-  delay(10000);
+  delay(2000);
 
   // Printing the ESP IP address
   Serial.println(WiFi.localIP());
-  Serial.println(F("BME280 test"));
+  Serial.println(F("Sensor Operational"));
 
   if (!bme.begin()) {
     Serial.println("Could not find a valid BME280 sensor, check wiring!");
@@ -87,7 +91,7 @@ void getGas()
 }
 
 
-// runs over and over again
+//Main Loop
 void loop() {
   // Listenning for new clients
   WiFiClient client = server.available();
