@@ -1,9 +1,11 @@
 /*********
-  Project: BME Weather Web server using NodeMCU
-  Implements Adafruit's sensor libraries.
-  Complete project is at: http://embedded-lab.com/blog/making-a-simple-weather-web-server-using-esp8266-and-bme280/
+  Project: Firewatch
+  Version: 0.2a
 
-  Modified code from Rui Santos' Temperature Weather Server posted on http://randomnerdtutorials.com
+  The following file contains the source code for the sensor hardware.
+  Various code snippets and data have been used from NodeMCU and BME280 tutorials.
+
+  Team Firewatch, 2018-2019
 *********/
 
 #include <Wire.h>
